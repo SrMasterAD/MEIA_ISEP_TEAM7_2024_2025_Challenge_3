@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "ac47ee20-6a3e-44f5-ab78-6a8797f87775",
+		"name": "Deep Wheat API",
+		"description": "FastAPI POC - User Registration, Login, Configurations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30690787"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"Test User\",\n  \"password\": \"mysecurepassword\"\n}"
+				},
+				"url": "http://localhost:8000/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"mysecurepassword\"\n}"
+				},
+				"url": "http://localhost:8000/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Configuration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"area\": 10.5,\n  \"plantation_cost\": 1200,\n  \"expected_profit\": 3000,\n  \"expected_yield\": 250\n}"
+				},
+				"url": "http://localhost:8000/user/configurations"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload photo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "picture",
+							"type": "file",
+							"src": "/Users/rcmanoel/Pictures/we0dRhvsmPzeV7h1LwYCdrv9KZzIG9ISHPt0iJsmFozozaIyBMU3B2b5d5xMVjenb0tWrPtoDRL8tD9w44WCFQ.webp"
+						}
+					]
+				},
+				"url": "http://localhost:8000/user/configurations/1/upload-photo"
+			},
+			"response": []
+		},
+		{
+			"name": "Report Generation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/marco/Downloads/diseases_256_256/Mildew0.png"
+						}
+					]
+				},
+				"url": "http://localhost:8000/report"
+			},
+			"response": []
+		},
+		{
+			"name": "Get user configurations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/user/configurations"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Configuration",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"user_id\": 1,\n  \"area\": 12.0,\n  \"plantation_cost\": 1300,\n  \"expected_profit\": 3500,\n  \"expected_yield\": 275\n}"
+				},
+				"url": "http://localhost:8000/user/configurations/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Configuration",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": "http://localhost:8000/user/configurations/1"
+			},
+			"response": []
+		}
+	]
+}
